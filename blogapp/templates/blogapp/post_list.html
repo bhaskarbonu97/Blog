@@ -1,0 +1,22 @@
+{% extends 'blogapp/base.html' %}
+{% block content %}
+<div class="media content-section">
+    {% for post in post_list %}
+      <article class="jumbotron">
+        <div class="media-body">
+          <div class="article-metadata">
+            <legend class="border-bottom mb-4">
+            <h4><a class="mr-2" href="#">{{ post.author }}</a></h4>
+            <small class="text-muted">{{ post.published_date|date:"F d, Y"}}</small></legend>
+          </div>
+            <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+            <img src="{{ post.image.url }}" alt="" width="200" height="200">
+            <legend class="border-bottom mb-4"></legend>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+        </div>
+
+      </article>
+    {% endfor %}
+
+</div>
+{% endblock %}
